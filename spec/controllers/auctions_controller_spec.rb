@@ -57,7 +57,7 @@ RSpec.describe AuctionsController, type: :controller do
         end
 
         it 'sets a flash message' do
-
+          
         end
 
 

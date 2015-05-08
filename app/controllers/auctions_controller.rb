@@ -11,5 +11,13 @@ class AuctionsController < ApplicationController
   end
 
   def create
+    @auction = Auction.new auction_params
+    @auction.save
+
   end
+
+  def auction_params 
+    params.require(:auction).permit(:title, :description, :reserve_price, :ends_on)
+  end
+
 end
