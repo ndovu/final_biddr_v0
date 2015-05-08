@@ -56,7 +56,10 @@ RSpec.describe AuctionsController, type: :controller do
           expect { valid_request }.to change { Auction.count }.by(1)
         end
 
-        it 'sets a flash message'
+        it 'sets a flash message' do
+
+        end
+
 
 
         it 'redirects to the auction show page'
