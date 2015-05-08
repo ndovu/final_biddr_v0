@@ -34,7 +34,15 @@ RSpec.describe Auction, type: :model do
     end
 
     it 'has a reserve_price greater than or equal to zero' do
+      invalid_reserve_price = -6022
+      auction = Auction.new valid_attributes({ reserve_price: invalid_reserve_price})
+      expect(auction).to be_invalid
+    end
 
+    it 'has a reserve price that is an integer' do
+      invalid_reserve_price = 'asdkfjhh'
+      auction = Auction.new valid_attributes({ reserve_price: invalid_reserve_price})
+      expect(auction).to be_invalid
     end
 
 
