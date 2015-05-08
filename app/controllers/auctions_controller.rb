@@ -1,5 +1,5 @@
 class AuctionsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
   def index
     @auctions = Auction.all
@@ -28,6 +28,16 @@ class AuctionsController < ApplicationController
 
   def edit
     @auction = current_user.auctions.find params[:id]
+  end
+
+  def update
+    @auction = current_user.auctions.find params[:id]
+    if @auction.update auction_params
+      redirect_to @auction, notice: "Sweet! Your auction is now up-to-date."
+    else
+      flash[:alert] = "Uh-oh... the auction was not updated."
+      render :edit
+    end
   end
 
   def auction_params 
