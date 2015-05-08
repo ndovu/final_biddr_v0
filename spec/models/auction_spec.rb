@@ -17,10 +17,26 @@ RSpec.describe Auction, type: :model do
       expect(auction).to be_invalid
     end
 
-    it 'requires a description'
+    it 'requires a description' do
+      auction = Auction.new(valid_attributes({ description: nil }))
+      expect(auction).to be_invalid
+    end
 
-    it 'has and ends_on datetime that is in the future'
+    it 'has an ends_on datetime' do
+      auction = Auction.new(valid_attributes({ ends_on: nil }))
+      expect(auction).to be_invalid
+    end
 
-    it 'has a reserve_price greater than or equal to zero'
+    it 'has an ends_on datetime that is in the future' do
+      invalid_datetime = DateTime.now - 20.days
+      auction = Auction.new valid_attributes({ ends_on: invalid_datetime})
+      expect(auction).to be_invalid
+    end
+
+    it 'has a reserve_price greater than or equal to zero' do
+
+    end
+
+
   end
 end
