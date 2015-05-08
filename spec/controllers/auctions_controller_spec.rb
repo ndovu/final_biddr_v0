@@ -57,14 +57,21 @@ RSpec.describe AuctionsController, type: :controller do
         end
 
         it 'sets a flash message' do
-          
+          valid_request
+          expect(flash[:notice]).to be
         end
 
+        it 'redirects to the auction show page' do
+          valid_request
+          # this test does not take care of the edge condition where 
+          # two auctions are created near the same time. oh well.
+          expect(response).to redirect_to(auction_path(Auction.last))
+        end
 
-
-        it 'redirects to the auction show page'
-
-        it 'associates the current auction to the user'
+        it 'associates the current auction to the user' do
+          valid_request
+          expect(Auction.last.user).to eq(user)
+        end
       end
 
       context 'with invalid parameters' do
