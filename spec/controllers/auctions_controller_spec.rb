@@ -28,6 +28,11 @@ RSpec.describe AuctionsController, type: :controller do
         expect(response).to render_template(:new)
       end
 
+      it "set an instance variable to a new auction" do
+        get :new
+        expect(assigns(:auction)).to be_a_new Auction
+      end
+
     end
 
     context "user not signed in" do
@@ -37,4 +42,36 @@ RSpec.describe AuctionsController, type: :controller do
       end
     end
   end
+
+  describe '#create' do
+    context 'user signed in' do
+      before { login(user) }
+
+      context 'with valid parameters' do
+        def valid_request
+          post :create, auction: attributes_for(:auction)
+        end
+
+        it 'creates a new auction to the database' do
+          expect { valid_request }.to change { Auction.count }.by(1)
+        end
+
+        it 'sets a flash message'
+
+
+        it 'redirects to the auction show page'
+
+        it 'associates the current auction to the user'
+      end
+
+      context 'with invalid parameters' do
+
+      end
+    end
+
+    context 'user not signed in' do
+
+    end
+  end
+
 end

@@ -6,6 +6,9 @@ class AuctionsController < ApplicationController
   end
 
   def new
+    @auction = Auction.new
+  end
 
+  def create
   end
 end
