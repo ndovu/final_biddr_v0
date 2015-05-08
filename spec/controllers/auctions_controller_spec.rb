@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe AuctionsController, type: :controller do
-  let(:auction_1) { create(:auction) }
-  let(:auction_2) { create(:auction) }
   let(:user)     { create(:user) }
+  let(:auction_1) { create(:auction, user: user) }
+  let(:auction_2) { create(:auction) }
 
   describe "#index" do
     it "renders the index template" do
@@ -101,6 +101,52 @@ RSpec.describe AuctionsController, type: :controller do
       it "redirects to sign in page" do
         post :create, auction: attributes_for(:auction)
         expect(response).to redirect_to new_session_path
+      end
+    end
+  end
+
+  describe "#show" do
+    before { get :show, id: auction_1.id }
+
+    it "renders the show template" do
+      expect(response).to render_template :show 
+    end
+
+    it "sets an instance variable with the auction whose id is passed" do
+      expect(assigns(:auction)).to eq(auction_1)
+    end
+  end
+
+  describe "#edit" do
+
+    context "user not signed in" do
+      before { get :edit, id: auction_1.id }
+
+      it "redirects to sign in page" do
+        post :create, auction: attributes_for(:auction)
+        expect(response).to redirect_to new_session_path
+      end
+    end
+
+    context "owner user of the auction is signed in" do
+      before { login(user) }
+      before { get :edit, id: auction_1.id }
+      
+      it "renders the edit template for the auction" do
+        expect(response).to render_template(:edit)
+      end
+
+      it "sets an auction instance variable with the id passed" do
+        expect(assigns(:auction)).to eq(auction_1)
+      end
+    end
+
+    context "with non-owner user signed in" do
+      # Comment the before action below to make the test fail
+      before { login(user) }
+
+      it "raises an error if a non-owners tries to edit" do
+        expect { get :edit, id: auction_2.id }.to raise_error
       end
     end
   end

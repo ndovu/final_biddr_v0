@@ -1,5 +1,5 @@
 class AuctionsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit]
 
   def index
     @auctions = Auction.all
@@ -20,6 +20,14 @@ class AuctionsController < ApplicationController
       flash[:alert] = "Oops! Something went wrong. Auction not created."
       render :new
     end
+  end
+
+  def show
+    @auction = Auction.find params[:id]
+  end
+
+  def edit
+    @auction = current_user.auctions.find params[:id]
   end
 
   def auction_params 
