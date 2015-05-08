@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :bids
   root 'welcome#index'
   get 'welcome/index'
   
