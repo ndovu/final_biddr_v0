@@ -75,12 +75,33 @@ RSpec.describe AuctionsController, type: :controller do
       end
 
       context 'with invalid parameters' do
+        def invalid_request
+          invalid_ends_on = DateTime.now - 33.days
+          post :create, auction: {ends_on: invalid_ends_on }
+        end
+
+        it 'does not create a record in the database' do
+          expect {invalid_request}.to change { Auction.count }.by(0)
+        end
+
+        it 'renders the new template' do
+          invalid_request
+          expect(response).to render_template(:new)
+        end
+
+        it 'sets a flash message' do
+          invalid_request
+          expect(flash[:alert]).to be
+        end
 
       end
     end
 
     context 'user not signed in' do
-
+      it "redirects to sign in page" do
+        post :create, auction: attributes_for(:auction)
+        expect(response).to redirect_to new_session_path
+      end
     end
   end
 

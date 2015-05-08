@@ -1,5 +1,5 @@
 class AuctionsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: [:new, :create]
 
   def index
     @auctions = Auction.all
@@ -16,6 +16,9 @@ class AuctionsController < ApplicationController
     if @auction.save
       flash[:notice] = "Awesome! Your auction has been created!"
       redirect_to auction_path(@auction)
+    else
+      flash[:alert] = "Oops! Something went wrong. Auction not created."
+      render :new
     end
   end
 
