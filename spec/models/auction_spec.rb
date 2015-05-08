@@ -45,6 +45,5 @@ RSpec.describe Auction, type: :model do
       expect(auction).to be_invalid
     end
 
-
   end
 end
