@@ -1,5 +1,5 @@
 class AuctionsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @auctions = Auction.all
@@ -39,6 +39,14 @@ class AuctionsController < ApplicationController
       render :edit
     end
   end
+
+  def destroy
+    @auction = current_user.auctions.find params[:id]
+    @auction.destroy
+    redirect_to auctions_path, notice: "Ka-boom! Auction destroyed."
+  end
+  
+  private
 
   def auction_params 
     params.require(:auction).permit(:title, :description, :reserve_price, :ends_on)
