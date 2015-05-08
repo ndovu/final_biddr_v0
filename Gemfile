@@ -43,5 +43,9 @@ group :development, :test do
   gem 'spring'
 
   gem 'rspec-rails'
+  gem "factory_girl_rails"
+  gem 'faker'
+  gem 'interactive_editor'
+  gem 'awesome_print'
 end
 
