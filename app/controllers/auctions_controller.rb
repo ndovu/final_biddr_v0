@@ -33,7 +33,7 @@ class AuctionsController < ApplicationController
   def update
     @auction = current_user.auctions.find params[:id]
     if @auction.update auction_params
-      redirect_to @auction, notice: "Sweet! Your auction is now up-to-date."
+      redirect_to @auction, notice: "Sweet! The auction has been updated."
     else
       flash[:alert] = "Uh-oh... the auction was not updated."
       render :edit
@@ -49,7 +49,7 @@ class AuctionsController < ApplicationController
   private
 
   def auction_params 
-    params.require(:auction).permit(:title, :description, :reserve_price, :ends_on)
+    params.require(:auction).permit(:title, :description, :reserve_price, :ends_on, :current_price)
   end
 
 end

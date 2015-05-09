@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-
+  has_secure_password
+  
   def new
     @user = User.new
   end
@@ -12,7 +13,7 @@ class UsersController < ApplicationController
     else
       flash[:alert] = "Account was not created!"
       render :new
-    end
+    end 
   end
 
   private

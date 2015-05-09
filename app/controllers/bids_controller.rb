@@ -7,6 +7,7 @@ class BidsController < ApplicationController
     @bid.user       = current_user
     @bid.auction    = @auction
     if @bid.save
+      @auction.update_attributes(current_price: @bid.amount)
       redirect_to @auction, notice: "Bid created"
     else
       flash[:alert] = "Bid not created"
