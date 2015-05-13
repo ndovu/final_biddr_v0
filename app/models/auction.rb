@@ -12,7 +12,9 @@ class Auction < ActiveRecord::Base
   private
   
   def default_values
-    if self.reserve_price > 0
+    if self.reserve_price == nil
+      self.current_price ||= 0
+    elsif  self.reserve_price > 0
       self.current_price ||= self.reserve_price
     else
       self.current_price ||= 0
