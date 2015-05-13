@@ -26,6 +26,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'bootstrap-sass'
+gem 'quiet_assets'
+gem 'simple_form'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -47,5 +51,7 @@ group :development, :test do
   gem 'faker'
   gem 'interactive_editor'
   gem 'awesome_print'
+  gem 'launchy'
+  gem 'capybara'
 end
 
