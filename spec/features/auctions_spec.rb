@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.feature "Auctions", type: :feature do 
   describe "Home Page" do 
-    it "displays a welcome message: 'Welcome to Biddr'" do
+    it "displays a welcome message" do
       visit root_path
-      expect(page).to have_text "Welcome to Biddr!"
+      expect(page).to have_text "Biddr It's better than eBay"
     end
 
     it "displays a title for the page" do

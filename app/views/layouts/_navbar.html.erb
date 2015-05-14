@@ -3,6 +3,7 @@
     <div class="container">
       <%= link_to "Biddr", root_path, class: "navbar-brand" %>
       <ul class="nav navbar-nav navbar-right">
+        <li><a href="<%= new_auction_path %>"><span class="glyphicon glyphicon-plus"></span> Create Auction</a></li>
         <li><a href="<%= new_user_path %>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a href="<%= new_session_path %>"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
