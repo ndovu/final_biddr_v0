@@ -37,11 +37,14 @@ RSpec.describe BidsController, type: :controller do
           expect(response).to redirect_to(auction_path(auction))
         end
 
+        it "sets the auction current price to the bid price"
+
         it "sets a flash message" do
           valid_request
           expect(flash[:notice]).to be
         end
       end
+
       context "with invalid params" do
         def invalid_request
           post :create, auction_id: auction.id,

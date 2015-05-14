@@ -15,3 +15,16 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+$( document ).ready(function() {
+    console.log( "ready!" );
+
+    $(function() {
+      $("#log-out").on("click",function(e) {
+        e.preventDefault(); 
+        $.delete('/sessions',function() {
+          console.log("user logged out");
+          // $("#someContainer").html(data);
+        });
+      });
+    });
+});

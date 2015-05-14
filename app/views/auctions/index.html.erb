@@ -1,0 +1,25 @@
+<h1>All Auctions</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Auction id</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Current Price</th>
+      <th>Reserve Price</th>
+      <th>Ends On</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @auctions.each do |auction| %>
+      <tr>
+        <td><%= link_to auction.id, auction %></td>
+        <td><%= link_to auction.title, auction %></td>
+        <td><%= link_to auction.description.truncate(140), auction%></td>
+        <td>$<%= auction.current_price %></td>
+        <td>$<%= auction.reserve_price %></td>
+        <td><%= auction.ends_on %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

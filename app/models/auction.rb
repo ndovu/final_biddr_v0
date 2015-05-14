@@ -17,7 +17,7 @@ class Auction < ActiveRecord::Base
     if self.reserve_price == nil
       self.current_price ||= 0
     elsif  self.reserve_price > 0
-      self.current_price ||= self.reserve_price
+      self.current_price ||= 0
     else
       self.current_price ||= 0
     end

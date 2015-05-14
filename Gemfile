@@ -30,6 +30,7 @@ gem 'bootstrap-sass'
 gem 'quiet_assets'
 gem 'simple_form'
 gem "font-awesome-rails"
+gem 'cancancan'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
