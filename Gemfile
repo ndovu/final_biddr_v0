@@ -29,6 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass'
 gem 'quiet_assets'
 gem 'simple_form'
+gem "font-awesome-rails"
 
 # Use Unicorn as the app server
 # gem 'unicorn'
