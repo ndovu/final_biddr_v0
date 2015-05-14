@@ -9,6 +9,8 @@ class Auction < ActiveRecord::Base
   validates :ends_on, presence: true, ends_on: true
   validates :reserve_price, numericality: { greater_than_or_equal_to: 0, only_integer: true}
 
+  scope :most_recent, lambda { |x| order("created_at DESC").limit(x) }
+
   private
   
   def default_values

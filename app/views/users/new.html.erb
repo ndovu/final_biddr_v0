@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>New to Biddr? Sign up</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <%= simple_form_for @user do |f| %>
+        <%= f.input :first_name, required: false, placeholder: 'Jane'%>
+        <%= f.input :last_name, placeholder: 'Doe' %>
+        <%= f.input :email, required: false, placeholder: 'your@email.com' %>
+        <%= f.input :password, placeholder: 'between 6 and 20 characters' %>
+        <%= f.input :password_confirmation, placeholder: 'same as above' %>
+        <%= f.submit "Create Account", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+    <div class="col-md-8"></div>
+  </div>
+</div>

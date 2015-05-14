@@ -1,1 +1,13 @@
-<h1>Welcome!</h1>
+<div class="container">
+  <div class="col-md-8">
+    <h1>Biddr</h1>
+    <p>It's better than eBay</p>
+    <hr>
+    <h2>Newest Auctions</h2>
+    <p>The current price is in paranthesis after the auction name.</p>
+    <% @auctions.each do |auction| %>
+      <h4><%= link_to auction.title, auction %> ($<%= auction.current_price %>)</h4>
+      <p><%= auction.description %></p>
+    <% end %>
+  </div>
+</div>
